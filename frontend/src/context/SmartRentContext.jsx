@@ -4,7 +4,9 @@ import { buildRentReminderMessage, buildWhatsAppUrl } from '../utils/rentReminde
 
 const SmartRentContext = createContext();
 
-const API_BASE = import.meta.env?.VITE_API_BASE_URL || 'http://127.0.0.1:5001/api';
+const rawApiUrl = import.meta.env?.VITE_API_BASE_URL || import.meta.env?.VITE_API_URL || 'http://127.0.0.1:5001/api';
+const normalizedUrl = String(rawApiUrl).trim().replace(/\/+$/, '');
+const API_BASE = normalizedUrl.endsWith('/api') ? normalizedUrl : `${normalizedUrl}/api`;
 const API_ORIGIN = new URL(API_BASE).origin;
 const currentPeriod = () => {
   const now = new Date();

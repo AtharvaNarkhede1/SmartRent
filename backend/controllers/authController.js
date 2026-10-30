@@ -53,7 +53,8 @@ exports.login = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Please provide email and password' });
     }
 
-    const admin = await Admin.findOne({ email });
+    const cleanEmail = String(email).trim();
+    const admin = await Admin.findOne({ email: { $regex: new RegExp(`^${cleanEmail}$`, 'i') } });
     if (!admin) {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }

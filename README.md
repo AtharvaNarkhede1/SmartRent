@@ -70,9 +70,12 @@ This project includes a `render.yaml` Blueprint for one-click deployment.
 **Frontend static site (`smartrent-frontend`):**
 | Variable | Description |
 |----------|-------------|
-| `VITE_API_URL` | Your backend Render URL (e.g. `https://smartrent-backend.onrender.com`) |
+| `VITE_API_BASE_URL` | Your backend Render URL ending in `/api` (e.g. `https://smartrent-v2qs.onrender.com/api`) |
 
-> ⚠️ After deploying the backend, copy its URL and set it as `VITE_API_URL` in the frontend service, then trigger a redeploy of the frontend.
+> ⚠️ **Important Deployment Notes:**
+> 1. Render creates **two separate URLs**: one for the Backend Web Service (API) and one for the Frontend Static Site (Website UI).
+> 2. Opening the Backend URL directly in a browser only accesses the API (`/` and `/api/health`). To use the web app UI, open the **Frontend Static Site URL**.
+> 3. After the backend deploys, copy its URL, add `VITE_API_BASE_URL=https://<your-backend-url>/api` to the frontend static site's Environment tab in Render, and click **Manual Deploy → Clear build cache & deploy** (Vite embeds env variables during build time).
 
 ---
 

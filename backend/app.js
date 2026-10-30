@@ -21,6 +21,14 @@ app.use('/api/bookings', require('./routes/bookingRoutes'));
 app.use('/api/maintenance', require('./routes/maintenanceRoutes'));
 app.use('/api/transactions', require('./routes/transactionRoutes'));
 app.get('/api/health', (req, res) => res.json({ success: true, data: { status: 'ok' } }));
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    service: 'SmartRent Backend API',
+    message: 'Backend is running successfully. To access the web app, open your Render static site URL.',
+    health: '/api/health'
+  });
+});
 
 app.use((err, req, res, next) => {
   console.error(err.message);
