@@ -1,0 +1,17 @@
+# Root-level gitignore for SmartRent monorepo
+# Each subfolder (frontend/, backend/) has its own .gitignore
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+*.log
+npm-debug.log*
